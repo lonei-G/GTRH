@@ -1,0 +1,63 @@
+gtrh.recipe.disassembler=拆解机
+
+gt.blockmachines.multimachine.processingarray.name=处理阵列
+gt.blockmachines.multimachine.processingcenter.name=加工中心
+
+gt.blockmachines.gtrh.machine.disassembler.tier.01.name=基础拆解机
+gt.blockmachines.gtrh.machine.disassembler.tier.02.name=进阶拆解机
+gt.blockmachines.gtrh.machine.disassembler.tier.03.name=进阶拆解机 I
+gt.blockmachines.gtrh.machine.disassembler.tier.04.name=进阶拆解机 II
+gt.blockmachines.gtrh.machine.disassembler.tier.05.name=进阶拆解机 III
+gt.blockmachines.gtrh.machine.disassembler.tier.06.name=进阶拆解机 IV
+gt.blockmachines.gtrh.machine.disassembler.tier.07.name=进阶拆解机 V
+gt.blockmachines.gtrh.machine.disassembler.tier.08.name=进阶拆解机 VI
+gt.blockmachines.gtrh.machine.disassembler.tier.09.name=进阶拆解机 VII
+gt.blockmachines.gtrh.machine.disassembler.tier.10.name=进阶拆解机 VIII
+gt.blockmachines.gtrh.machine.disassembler.tier.11.name=进阶拆解机 IX
+gt.blockmachines.gtrh.machine.disassembler.tier.12.name=精英拆解机
+
+gtrh.machine.disassembler.description=将物品拆解为其组成部件
+
+gtrh.machine.processing_array.type=处理阵列
+gtrh.machine.processing_array.info.0=将放入其中的机器当作放置在世界中运行
+gtrh.machine.processing_array.info.1=最多可将 64 台单方块 GT 机器放入控制器
+gtrh.machine.processing_array.info.2=注意你仍然需要为它们全部供电
+gtrh.machine.processing_array.info.3=使用螺丝刀开启输入总线隔离
+gtrh.machine.processing_array.info.4=使用剪线钳关闭 UEV 及以上机器的降级处理
+gtrh.machine.processing_array.info.5=部分机器不受支持，请自行处理
+gtrh.machine.processing_array.info.6=如果你讨厌 GT++，或者以后想要更高的速度，就用它吧
+
+gtrh.machine.processing_center.type=九合一
+gtrh.machine.processing_center.mode.0=金属
+gtrh.machine.processing_center.mode.1=流体
+gtrh.machine.processing_center.mode.2=杂项
+
+gtrh.machine.processing_center.machine.0=压缩机
+gtrh.machine.processing_center.machine.1=车床
+gtrh.machine.processing_center.machine.2=两极磁化机
+gtrh.machine.processing_center.machine.3=发酵槽
+gtrh.machine.processing_center.machine.4=流体提取机
+gtrh.machine.processing_center.machine.5=提取机
+gtrh.machine.processing_center.machine.6=精密激光蚀刻机
+gtrh.machine.processing_center.machine.7=高压釜
+gtrh.machine.processing_center.machine.8=流体固化器
+
+gtrh.machine.processing_center.info.0=比相同电压的单方块机器快250%
+gtrh.machine.processing_center.info.1=只需要使用配方要求功率的80%
+gtrh.machine.processing_center.info.2=每提升一个电压等级，每次运行可以多处理2个物品
+gtrh.machine.processing_center.info.metal=机器类型：[金属] - %s、%s、%s
+gtrh.machine.processing_center.info.fluid=机器类型：[流体] - %s、%s、%s
+gtrh.machine.processing_center.info.misc=机器类型：[杂项] - %s、%s、%s
+gtrh.machine.processing_center.info.circuit=使用集成电路 20、21 或 22 选择要处理的机器
+gtrh.machine.processing_center.info.mode_switch=使用 GUI 中的模式按钮在金属、流体和杂项之间切换
+gtrh.machine.processing_center.info.solidifier=杂项模式下可使用固化仓固化多种流体
+
+gtrh.tooltip.added_by=唤回者：
+gtrh.tooltip.any_casing=任意机械方块
+gtrh.tooltip.front_center=正面中心
+gtrh.tooltip.casing.robust_tungstensteel=强化钨钢机械方块
+gtrh.tooltip.casing.multi_use=多功能机械方块
+
+gtrh.nei.generated.crafting=由 GT 工作台配方反向生成
+gtrh.nei.generated.assembler=由组装机配方反向生成
+gtrh.nei.generated.assembler.hard=由组装机配方反向生成（硬覆盖）

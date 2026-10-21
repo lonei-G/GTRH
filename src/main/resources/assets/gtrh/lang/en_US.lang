@@ -1,0 +1,63 @@
+gtrh.recipe.disassembler=Disassembler
+
+gt.blockmachines.multimachine.processingarray.name=Processing Array
+gt.blockmachines.multimachine.processingcenter.name=Processing Center
+
+gt.blockmachines.gtrh.machine.disassembler.tier.01.name=Basic Disassembler
+gt.blockmachines.gtrh.machine.disassembler.tier.02.name=Advanced Disassembler
+gt.blockmachines.gtrh.machine.disassembler.tier.03.name=Advanced Disassembler I
+gt.blockmachines.gtrh.machine.disassembler.tier.04.name=Advanced Disassembler II
+gt.blockmachines.gtrh.machine.disassembler.tier.05.name=Advanced Disassembler III
+gt.blockmachines.gtrh.machine.disassembler.tier.06.name=Advanced Disassembler IV
+gt.blockmachines.gtrh.machine.disassembler.tier.07.name=Advanced Disassembler V
+gt.blockmachines.gtrh.machine.disassembler.tier.08.name=Advanced Disassembler VI
+gt.blockmachines.gtrh.machine.disassembler.tier.09.name=Advanced Disassembler VII
+gt.blockmachines.gtrh.machine.disassembler.tier.10.name=Advanced Disassembler VIII
+gt.blockmachines.gtrh.machine.disassembler.tier.11.name=Advanced Disassembler IX
+gt.blockmachines.gtrh.machine.disassembler.tier.12.name=Highly Advanced Disassembler
+
+gtrh.machine.disassembler.description=Disassembles items into their components
+
+gtrh.machine.processing_array.type=Processing Array
+gtrh.machine.processing_array.info.0=Runs supplied machines as if placed in the world
+gtrh.machine.processing_array.info.1=Place up to 64 singleblock GT machines into the controller
+gtrh.machine.processing_array.info.2=Note that you still need to supply power to them all
+gtrh.machine.processing_array.info.3=Use a screwdriver to enable separate input buses
+gtrh.machine.processing_array.info.4=Use a wire cutter to disable UEV+ downtiering
+gtrh.machine.processing_array.info.5=Doesn't work on certain machines, deal with it
+gtrh.machine.processing_array.info.6=Use it if you hate GT++, or want even more speed later on
+
+gtrh.machine.processing_center.type=Nine in One
+gtrh.machine.processing_center.mode.0=Metal
+gtrh.machine.processing_center.mode.1=Fluid
+gtrh.machine.processing_center.mode.2=Misc
+
+gtrh.machine.processing_center.machine.0=Compressor
+gtrh.machine.processing_center.machine.1=Lathe
+gtrh.machine.processing_center.machine.2=Polarizer
+gtrh.machine.processing_center.machine.3=Fermenter
+gtrh.machine.processing_center.machine.4=Fluid Extractor
+gtrh.machine.processing_center.machine.5=Extractor
+gtrh.machine.processing_center.machine.6=Precision Laser Engraver
+gtrh.machine.processing_center.machine.7=Autoclave
+gtrh.machine.processing_center.machine.8=Fluid Solidifier
+
+gtrh.machine.processing_center.info.0=250% faster than using single block machines of the same voltage
+gtrh.machine.processing_center.info.1=Only uses 80% of the EU/t normally required
+gtrh.machine.processing_center.info.2=Processes two items per voltage tier
+gtrh.machine.processing_center.info.metal=Machine Type: Metal - %s, %s, %s
+gtrh.machine.processing_center.info.fluid=Machine Type: Fluid - %s, %s, %s
+gtrh.machine.processing_center.info.misc=Machine Type: Misc - %s, %s, %s
+gtrh.machine.processing_center.info.circuit=Select the machine with an integrated circuit: 20, 21 or 22
+gtrh.machine.processing_center.info.mode_switch=Switch between Metal, Fluid and Misc with the mode button in the GUI
+gtrh.machine.processing_center.info.solidifier=A solidifier hatch can solidify multiple liquids in Misc mode
+
+gtrh.tooltip.added_by=Added by:
+gtrh.tooltip.any_casing=Any casing
+gtrh.tooltip.front_center=Front center
+gtrh.tooltip.casing.robust_tungstensteel=Robust Tungstensteel Machine Casing
+gtrh.tooltip.casing.multi_use=Multi-Use Casing
+
+gtrh.nei.generated.crafting=Generated from GT Crafting Recipe
+gtrh.nei.generated.assembler=Generated from Assembler Recipe
+gtrh.nei.generated.assembler.hard=Generated from Assembler Recipe (Hard-overridden)

@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "minVersion": "0.8.5-GTNH",
+  "refmap": "mixins.gtrh.refmap.json",
+  "target": "@env(DEFAULT)",
+  "compatibilityLevel": "JAVA_8",
+  "package": "com.loneig.gtrh.mixin",
+  "mixins": [
+    "MTELightningRodMixin",
+    "GTModHandlerMixin",
+    "BWUtilMixin",
+    "MTEHatchOutputMEBaseMixin"
+  ],
+  "client": [],
+  "server": []
+}
