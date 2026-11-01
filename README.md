@@ -19,9 +19,10 @@ GTRH is an unofficial add-on for GTNH that brings back the "heroes" lost to olde
 
 ## Downloads & Requirements
 
-| GTNH       | GTRH  | Download                                            | Maintenance |
-|------------|-------|-----------------------------------------------------|:-----------:|
-| 2.9.0-RC-2 | 0.1.0 | [0.1.0](https://github.com/lonei-G/GTRH/tree/0.1.0) |     ✔️      |
+| GTNH  | GTRH  | Download                                            | Maintenance |
+|-------|-------|-----------------------------------------------------|:-----------:|
+| 2.9.0-RC-2 | 0.1.0 | [0.1.0](https://github.com/lonei-G/GTRH/tree/0.1.0) |     ❌     |
+| 2.9.0 | 0.2.0 | [0.2.0](https://github.com/lonei-G/GTRH/tree/0.2.0) |     ✔️      |
 
 ## Credits
 
