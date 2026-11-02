@@ -3,6 +3,7 @@ package com.loneig.gtrh.proxy;
 import com.loneig.gtrh.Config;
 import com.loneig.gtrh.GTRH;
 import com.loneig.gtrh.Tags;
+import com.loneig.gtrh.module.bec.BecNoNerfModule;
 import com.loneig.gtrh.module.comb.IndiumCombModule;
 import com.loneig.gtrh.module.disassembler.DisassemblerModule;
 import com.loneig.gtrh.module.processingarray.ProcessingArrayModule;
@@ -36,5 +37,6 @@ public class CommonProxy {
 
     public void loadComplete(FMLLoadCompleteEvent event) {
         DisassemblerModule.loadComplete();
+        BecNoNerfModule.loadComplete();
     }
 }

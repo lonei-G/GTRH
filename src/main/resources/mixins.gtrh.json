@@ -9,7 +9,9 @@
     "MTELightningRodMixin",
     "GTModHandlerMixin",
     "BWUtilMixin",
-    "MTEHatchOutputMEBaseMixin"
+    "MTEHatchOutputMEBaseMixin",
+    "MTEBECAssemblerMixin",
+    "MTEBECIONodeMixin"
   ],
   "client": [],
   "server": []
