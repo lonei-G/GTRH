@@ -27,7 +27,6 @@ public final class QftWaterlineModule {
     public static void register() {
         if (!Config.moduleEnabled("qft_waterline")) return;
 
-        // RC2 no longer ships the old RedMetalCatalyst, so existing QFT catalysts are reused as markers.
         ItemStack limpidWaterCatalyst = GregtechItemList.PlatinumGroupCatalyst.get(1);
         ItemStack flawlessWaterCatalyst = GregtechItemList.InfiniteMutationCatalyst.get(1);
 

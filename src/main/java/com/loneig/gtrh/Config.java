@@ -70,7 +70,7 @@ public class Config {
             case "infinity_storage_me_hatches":
                 return "Give ME output buses and ME output hatches infinite capacity.";
             case "indium_comb_processing":
-                return "Add centrifuge processing for indium combs.";
+                return "Add large chemical reactor recipes for indium combs.";
             case "qft_waterline":
                 return "Add the QFT waterline recipes and their catalysts.";
             case "processing_array":

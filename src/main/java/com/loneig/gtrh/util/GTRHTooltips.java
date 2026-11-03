@@ -13,14 +13,38 @@ public final class GTRHTooltips {
 
     private GTRHTooltips() {}
 
-    /**
-     * Appends the "added by" line through GTNHLib's item tooltip registry, the same way GT-Not-Leisure does.
-     * Must stay client only, the handler renders during ItemTooltipEvent.
-     */
     public static void addMachineTooltip(ItemStack stack) {
-        if (stack == null || FMLCommonHandler.instance()
-            .getSide() != Side.CLIENT) return;
+        if (!isClient(stack)) return;
         AnimatedTooltipHandler.addItemTooltip(stack, authorLine());
+    }
+
+    @SafeVarargs
+    public static void addModifiedTooltip(ItemStack stack, Supplier<String>... lines) {
+        if (!isClient(stack) || lines == null || lines.length == 0) return;
+        AnimatedTooltipHandler.addItemTooltip(stack, modificationLines(lines));
+    }
+
+    public static Supplier<String> line(String key) {
+        return AnimatedTooltipHandler.translatedText(key);
+    }
+
+    private static boolean isClient(ItemStack stack) {
+        return stack != null && FMLCommonHandler.instance()
+            .getSide() == Side.CLIENT;
+    }
+
+    private static Supplier<String> modificationLines(Supplier<String>[] lines) {
+        return () -> {
+            StringBuilder builder = new StringBuilder();
+            for (int i = 0; i < lines.length; i++) {
+                if (i > 0) builder.append('\n');
+                builder.append(AnimatedTooltipHandler.GREEN)
+                    .append(lines[i].get());
+            }
+            builder.append('\n')
+                .append(modifiedByLine().get());
+            return builder.toString();
+        };
     }
 
     private static final String MOD_NAME = "GregTech: Relics of the Horizon";
@@ -30,15 +54,20 @@ public final class GTRHTooltips {
     private static final String BROWN_TEXT = AnimatedTooltipHandler.GOLD + AnimatedTooltipHandler.BOLD;
 
     private static Supplier<String> authorLine() {
+        return creditLine("gtrh.tooltip.added_by");
+    }
+
+    private static Supplier<String> modifiedByLine() {
+        return creditLine("gtrh.tooltip.modified_by");
+    }
+
+    private static Supplier<String> creditLine(String key) {
         return AnimatedTooltipHandler.chain(
-            AnimatedTooltipHandler.translatedText("gtrh.tooltip.added_by"),
+            AnimatedTooltipHandler.translatedText(key),
             AnimatedTooltipHandler.text(" "),
             GTRHTooltips::sweepModName);
     }
 
-    /**
-     * A highlight sweeps across the name, each character turning silver, then brown, and back to white.
-     */
     private static String sweepModName() {
         long tick = System.currentTimeMillis() / PHASE_MILLIS;
         int cycle = MOD_NAME.length() + 2;

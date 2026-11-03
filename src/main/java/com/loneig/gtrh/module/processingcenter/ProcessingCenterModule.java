@@ -20,6 +20,11 @@ public final class ProcessingCenterModule {
     public static void postInit() {
         if (!Config.moduleEnabled("processing_center")) return;
 
+        if (ModBlocks.blockCasings3Misc == null) {
+            GTRH.LOG.error("Processing center: Multi-Use Casing is not available, skipped");
+            return;
+        }
+
         int id = Config.processingCenterMteId;
         if (GregTechAPI.METATILEENTITIES[id] != null) {
             GTRH.LOG.error("Processing center: MTE id {} is already in use, skipped", id);
@@ -29,11 +34,6 @@ public final class ProcessingCenterModule {
         ItemStack stack = new MTEProcessingCenter(id, "multimachine.processingcenter", "Processing Center")
             .getStackForm(1);
         GTRHTooltips.addMachineTooltip(stack);
-
-        if (ModBlocks.blockCasings3Misc == null) {
-            GTRH.LOG.error("Processing center: Multi-Use Casing is not available, skipped");
-            return;
-        }
 
         GTModHandler.addMachineCraftingRecipe(
             stack,

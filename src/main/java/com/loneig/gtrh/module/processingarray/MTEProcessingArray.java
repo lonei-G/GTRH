@@ -339,7 +339,9 @@ public class MTEProcessingArray extends MTEExtendedPowerMultiBlockBase<MTEProces
             // backward compatibility
             batchMode = aNBT.getBoolean("mUseMultiparallelMode");
         }
-        downtierUEV = aNBT.getBoolean("downtierUEV");
+        if (aNBT.hasKey("downtierUEV")) {
+            downtierUEV = aNBT.getBoolean("downtierUEV");
+        }
     }
 
     @Override
@@ -369,6 +371,7 @@ public class MTEProcessingArray extends MTEExtendedPowerMultiBlockBase<MTEProces
             }
         } else {
             downtierUEV = !downtierUEV;
+            setTierAndMult();
             GTUtility.sendChatToPlayer(aPlayer, "Treat UEV+ machines as multiple UHV " + downtierUEV);
         }
         return true;

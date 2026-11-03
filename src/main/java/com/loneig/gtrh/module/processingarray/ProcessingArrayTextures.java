@@ -11,11 +11,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 import gregtech.api.GregTechAPI;
 import gregtech.api.interfaces.IIconContainer;
 
-/**
- * Icons used by the processing array controller.
- * <p>
- * The class has to be touched during preInit so the icons are queued before GT loads its block icons.
- */
 public final class ProcessingArrayTextures {
 
     public static final IIconContainer OVERLAY_FRONT_PROCESSING_ARRAY = new CustomIcon(
@@ -29,9 +24,7 @@ public final class ProcessingArrayTextures {
 
     private ProcessingArrayTextures() {}
 
-    public static void init() {
-        // Referencing the class is enough, the icons register themselves on class load.
-    }
+    public static void init() {}
 
     private static final class CustomIcon implements IIconContainer, Runnable {
 

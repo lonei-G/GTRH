@@ -7,9 +7,6 @@ import net.minecraft.item.ItemStack;
 import gregtech.api.enums.SoundResource;
 import gregtech.api.recipe.RecipeMap;
 
-/**
- * Maps single block machines to the recipe map and activity sound the processing array should use for them.
- */
 public final class ProcessingArrayManager {
 
     private static final HashMap<String, RecipeMap<?>> RECIPE_MAPS = new HashMap<>();
@@ -33,9 +30,6 @@ public final class ProcessingArrayManager {
         return MACHINE_SOUNDS.get(machine);
     }
 
-    /**
-     * Strips the {@code gt.blockmachines.} prefix and the {@code .tier.xx} suffix from a machine item.
-     */
     public static String getMachineName(ItemStack stack) {
         String name = stack == null ? null : stack.getUnlocalizedName();
         if (name == null || name.length() <= 25) {

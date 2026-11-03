@@ -11,7 +11,9 @@
     "BWUtilMixin",
     "MTEHatchOutputMEBaseMixin",
     "MTEBECAssemblerMixin",
-    "MTEBECIONodeMixin"
+    "MTEBECIONodeMixin",
+    "MTETooltipMultiBlockBaseMixin",
+    "RecipeMapFrontendMixin"
   ],
   "client": [],
   "server": []

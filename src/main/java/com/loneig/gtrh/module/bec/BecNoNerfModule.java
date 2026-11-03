@@ -9,6 +9,7 @@ import net.minecraftforge.fluids.FluidStack;
 
 import com.loneig.gtrh.Config;
 import com.loneig.gtrh.GTRH;
+import com.loneig.gtrh.module.ModifiedRecipes;
 
 import goodgenerator.items.GGMaterial;
 import goodgenerator.util.ItemRefer;
@@ -84,6 +85,7 @@ public final class BecNoNerfModule {
             int oldDuration = oldCondensateDuration(type);
             if (oldDuration > 0 && recipe.mDuration != oldDuration) {
                 recipe.mDuration = oldDuration;
+                ModifiedRecipes.mark(recipe);
                 changed++;
             }
         }
@@ -153,19 +155,25 @@ public final class BecNoNerfModule {
         for (GTRecipe recipe : TecTechRecipeMaps.condensateAssemblingRecipes.getAllRecipes()) {
             if (!matchesAny(recipe, outputs)) continue;
 
+            boolean touched = recipe.mDuration != OLD_EOH_DURATION;
             recipe.mDuration = OLD_EOH_DURATION;
-            changed++;
 
             if (matches(recipe, temporalCasing) || matches(recipe, spatialCasing)) {
-                revertPlates(recipe, oldPlates);
+                touched |= revertPlates(recipe, oldPlates);
             }
+            if (!touched) continue;
+
+            ModifiedRecipes.mark(recipe);
+            changed++;
         }
 
         return changed;
     }
 
-    private static void revertPlates(GTRecipe recipe, ItemStack[] oldPlates) {
-        if (recipe.mInputs == null) return;
+    private static boolean revertPlates(GTRecipe recipe, ItemStack[] oldPlates) {
+        if (recipe.mInputs == null) return false;
+
+        boolean touched = false;
 
         for (ItemStack input : recipe.mInputs) {
             if (input == null || input.stackSize <= 1) continue;
@@ -173,10 +181,13 @@ public final class BecNoNerfModule {
             for (ItemStack plate : oldPlates) {
                 if (GTUtility.areStacksEqual(input, plate)) {
                     input.stackSize = 1;
+                    touched = true;
                     break;
                 }
             }
         }
+
+        return touched;
     }
 
     private static int revertCoilRecipes() {
@@ -187,15 +198,20 @@ public final class BecNoNerfModule {
         int changed = 0;
 
         for (GTRecipe recipe : TecTechRecipeMaps.condensateAssemblingRecipes.getAllRecipes()) {
+            boolean touched = false;
+
             if (matches(recipe, guidance) || matches(recipe, transformative)) {
-                setCondensate(recipe, CondensateType.ChromaticGlass, 64 * INGOTS);
-                setCondensate(recipe, CondensateType.Infinity, 8 * INGOTS);
-                setCondensate(recipe, CondensateType.CelestialTungsten, 8 * INGOTS);
-                changed++;
+                touched |= setCondensate(recipe, CondensateType.ChromaticGlass, 64 * INGOTS);
+                touched |= setCondensate(recipe, CondensateType.Infinity, 8 * INGOTS);
+                touched |= setCondensate(recipe, CondensateType.CelestialTungsten, 8 * INGOTS);
             } else if (matches(recipe, uxvCasing)) {
-                setCondensate(recipe, CondensateType.BoundlessCosmicSolder, 32 * INGOTS);
-                changed++;
+                touched = setCondensate(recipe, CondensateType.BoundlessCosmicSolder, 32 * INGOTS);
             }
+
+            if (!touched) continue;
+
+            ModifiedRecipes.mark(recipe);
+            changed++;
         }
 
         changed += revertResearchStationCoilFluids(guidance, transformative);
@@ -263,6 +279,7 @@ public final class BecNoNerfModule {
                 12 * INGOTS,
                 mutatedLivingSolder,
                 4 * INGOTS)) {
+                ModifiedRecipes.mark(recipe);
                 changed++;
             }
         }
@@ -310,6 +327,8 @@ public final class BecNoNerfModule {
             FluidStack[] condensates = condensates(recipe);
             if (condensates == null) continue;
 
+            boolean touched = false;
+
             for (FluidStack stack : condensates) {
                 if (stack == null) continue;
 
@@ -319,9 +338,15 @@ public final class BecNoNerfModule {
                 int units = stack.amount / 1000;
                 int oldAmount = units * INGOTS;
                 if (type == CondensateType.DimensionallyShiftedSuperfluid) oldAmount *= 2;
+                if (stack.amount == oldAmount) continue;
+
                 stack.amount = oldAmount;
+                touched = true;
             }
 
+            if (!touched) continue;
+
+            ModifiedRecipes.mark(recipe);
             changed++;
         }
 
@@ -340,11 +365,21 @@ public final class BecNoNerfModule {
             if (!matches(recipe, shijima) && !matches(recipe, churitsu)) continue;
 
             BlastFurnaceGasStat gas = gasInput(recipe);
-            recipe.mDuration = gas == null ? HOT_INGOT_NO_GAS_TICKS
+            int duration = gas == null ? HOT_INGOT_NO_GAS_TICKS
                 : Math.max(1, (int) (gas.recipeTimeMultiplier * gasBaseTicks));
-            recipe.mEUt = (int) TierEU.RECIPE_UHV;
+            int eut = (int) TierEU.RECIPE_UHV;
+            Integer heat = recipe.getMetadata(GTRecipeConstants.COIL_HEAT);
+            boolean touched = recipe.mDuration != duration || recipe.mEUt != eut
+                || heat == null
+                || heat.intValue() != 7400;
+
+            recipe.mDuration = duration;
+            recipe.mEUt = eut;
             recipe.getMetadataStorage()
                 .store(GTRecipeConstants.COIL_HEAT, Integer.valueOf(7400));
+            if (!touched) continue;
+
+            ModifiedRecipes.mark(recipe);
             changed++;
         }
 
@@ -392,13 +427,21 @@ public final class BecNoNerfModule {
         return recipe.getMetadata(GTRecipeConstants.CONDENSATE_INPUT);
     }
 
-    private static void setCondensate(GTRecipe recipe, CondensateType type, int amount) {
+    private static boolean setCondensate(GTRecipe recipe, CondensateType type, int amount) {
         FluidStack[] condensates = condensates(recipe);
-        if (condensates == null) return;
+        if (condensates == null) return false;
+
+        boolean touched = false;
 
         for (FluidStack stack : condensates) {
             if (stack == null) continue;
-            if (CondensateType.getCondensateType(stack.getFluid()) == type) stack.amount = amount;
+            if (CondensateType.getCondensateType(stack.getFluid()) != type) continue;
+            if (stack.amount == amount) continue;
+
+            stack.amount = amount;
+            touched = true;
         }
+
+        return touched;
     }
 }

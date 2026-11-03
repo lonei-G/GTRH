@@ -347,7 +347,6 @@ public class MTEProcessingCenter extends GTPPMultiBlockBase<MTEProcessingCenter>
             FluidStack fluid = solidifierHatch.getFluid();
             if (items == null || fluid == null) continue;
 
-            // The hatch already exposes its circuit slot, replace it with the circuit used by this machine
             ItemStack circuitItem = GTUtility.getIntegratedCircuit(0);
             items.removeIf(
                 stack -> stack != null && stack.getItem() == circuitItem.getItem()

@@ -53,6 +53,13 @@ gtrh.machine.processing_center.info.mode_switch=Switch between Metal, Fluid and 
 gtrh.machine.processing_center.info.solidifier=A solidifier hatch can solidify multiple liquids in Misc mode
 
 gtrh.tooltip.added_by=Added by:
+gtrh.tooltip.modified_by=Modified by:
+gtrh.tooltip.change.lightning_rod=The fence is not damaged when struck by lightning.
+gtrh.tooltip.change.me_hatch=Default cache capacity is 9.22e18.
+gtrh.tooltip.change.bec_assembler.nanites=Nanite swarm cap is now 2,147,483,647.
+gtrh.tooltip.change.bec_ionode=Swarm penalty has been removed.
+
+gtrh.nei.modified=Modified by GTRH
 gtrh.tooltip.any_casing=Any casing
 gtrh.tooltip.front_center=Front center
 gtrh.tooltip.casing.robust_tungstensteel=Robust Tungstensteel Machine Casing
