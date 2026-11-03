@@ -54,10 +54,8 @@ gtrh.machine.processing_center.info.solidifier=杂项模式下可使用固化仓
 
 gtrh.tooltip.added_by=唤回者：
 gtrh.tooltip.modified_by=修改者：
-gtrh.tooltip.change.lightning_rod=被闪电击中时，栅栏不会损坏。
-gtrh.tooltip.change.me_hatch=缓存默认为9.22e18。
-gtrh.tooltip.change.bec_assembler.nanites=纳米蜂群数量上限已修改为2,147,483,647。
-gtrh.tooltip.change.bec_ionode=蜂群惩罚已移除。
+gtrh.tooltip.change.lightning_rod=被闪电击中时，栅栏不会损坏
+gtrh.tooltip.change.bec_ionode=蜂群惩罚已移除
 
 gtrh.nei.modified=由GTRH修改
 gtrh.tooltip.any_casing=任意机械方块

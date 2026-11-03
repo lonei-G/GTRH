@@ -19,6 +19,8 @@ public class RecipeMapFrontendMixin {
     @Inject(method = "drawDescription", at = @At("TAIL"))
     private void gtrh$showModifiedBy(RecipeDisplayInfo recipeInfo, CallbackInfo ci) {
         if (!ModifiedRecipes.isModified(recipeInfo.recipe)) return;
-        recipeInfo.drawText(EnumChatFormatting.GOLD + StatCollector.translateToLocal("gtrh.nei.modified"));
+        recipeInfo.drawText(
+            EnumChatFormatting.DARK_PURPLE.toString() + EnumChatFormatting.BOLD
+                + StatCollector.translateToLocal("gtrh.nei.modified"));
     }
 }

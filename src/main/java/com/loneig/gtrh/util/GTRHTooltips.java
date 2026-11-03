@@ -24,6 +24,11 @@ public final class GTRHTooltips {
         AnimatedTooltipHandler.addItemTooltip(stack, modificationLines(lines));
     }
 
+    public static void addModifiedByLine(ItemStack stack) {
+        if (!isClient(stack)) return;
+        AnimatedTooltipHandler.addItemTooltip(stack, modifiedByLine());
+    }
+
     public static Supplier<String> line(String key) {
         return AnimatedTooltipHandler.translatedText(key);
     }
