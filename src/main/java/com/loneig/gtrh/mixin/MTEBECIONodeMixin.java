@@ -9,6 +9,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import com.loneig.gtrh.Config;
+import com.loneig.gtrh.module.bec.NaniteBudget;
 
 import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
 import gregtech.api.metatileentity.MetaTileEntity;
@@ -56,20 +57,16 @@ public abstract class MTEBECIONodeMixin {
         int room = self.mMaxProgresstime - progress;
         if (room <= 0) return 0;
 
-        int sub = Math.max(this.subtickCounter, 0);
-        int parallels = Math.max(self.getParallelRecipesInProgress(), 1);
         int slowdownCount = this.requiredCondensate == null ? this.slowdowns
             : assembler.getSlowdowns(this.requiredCondensate.keySet());
-        int slowdown = Math.max(slowdownCount + 1, self.getManualSlowdown());
-        long divisor = (long) parallels * slowdown;
-        if (divisor < 1) divisor = 1;
 
-        long needed = (long) room * divisor - sub;
-        if (needed < 1) needed = 1;
-        if (raw > needed) return needed > Integer.MAX_VALUE ? Integer.MAX_VALUE : (int) needed;
-
-        long sumRoom = (long) Integer.MAX_VALUE - sub;
-        return raw > sumRoom ? (int) sumRoom : raw;
+        return NaniteBudget.resolve(
+            raw,
+            room,
+            this.subtickCounter,
+            self.getParallelRecipesInProgress(),
+            slowdownCount,
+            self.getManualSlowdown());
     }
 
     @Inject(method = "getProcessingSpeed", at = @At("RETURN"), cancellable = true)
