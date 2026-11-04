@@ -1,26 +1,30 @@
 package com.loneig.gtrh.mixin;
 
+import org.spongepowered.asm.lib.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import com.llamalad7.mixinextras.sugar.Local;
 import com.loneig.gtrh.Config;
-import com.loneig.gtrh.module.bec.NaniteBudget;
 
 import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.util.GTUtility;
-import tectech.mechanics.boseEinsteinCondensate.CondensateList;
 import tectech.thing.metaTileEntity.hatch.bec.MTEHatchLoS;
+import tectech.thing.metaTileEntity.multi.base.MTEBECMultiblockBase;
 import tectech.thing.metaTileEntity.multi.bec.MTEBECAssembler;
 import tectech.thing.metaTileEntity.multi.bec.MTEBECIONode;
 
 @Mixin(value = MTEBECIONode.class, remap = false)
-public abstract class MTEBECIONodeMixin {
+public abstract class MTEBECIONodeMixin extends MTEBECMultiblockBase<MTEBECIONodeMixin> {
 
     @Shadow
     private int slowdowns;
@@ -29,44 +33,37 @@ public abstract class MTEBECIONodeMixin {
     private int subtickCounter;
 
     @Shadow
-    private CondensateList requiredCondensate;
-
-    @Shadow
     private MTEHatchLoS losHatch;
+
+    private MTEBECIONodeMixin(int id, String name) {
+        super(id, name);
+    }
 
     @Inject(method = "incrementProgressTime", at = @At("HEAD"))
     private void gtrh$repairOverflowedProgress(CallbackInfo ci) {
         if (!Config.moduleEnabled("bec_no_nerf")) return;
 
-        MTEBECIONode self = (MTEBECIONode) (Object) this;
-        if (self.mProgresstime < 0) self.mProgresstime = 0;
+        if (this.mProgresstime < 0) this.mProgresstime = 0;
         if (this.subtickCounter < 0) this.subtickCounter = 0;
     }
 
-    @Redirect(
+    @WrapOperation(
         method = "incrementProgressTime",
         at = @At(
-            value = "INVOKE",
-            target = "Ltectech/thing/metaTileEntity/multi/bec/MTEBECAssembler;getAvailableNanites()I"))
-    private int gtrh$nanitesThatFitProgress(MTEBECAssembler assembler) {
-        int raw = assembler.getAvailableNanites();
-        if (!Config.moduleEnabled("bec_no_nerf") || raw <= 0) return Math.max(raw, 0);
+            value = "FIELD",
+            target = "Ltectech/thing/metaTileEntity/multi/bec/MTEBECIONode;subtickCounter:I",
+            opcode = Opcodes.PUTFIELD))
+    private void gtrh$incrementProgressTime1(MTEBECIONode instance, int originValue, Operation<Void> original,
+        @Local(ordinal = 0) int availableNanites) {
+        if (!Config.moduleEnabled("bec_no_nerf")) return;
+        original.call(instance, (int) Math.min(Integer.MAX_VALUE, (long) subtickCounter + availableNanites));
+    }
 
-        MTEBECIONode self = (MTEBECIONode) (Object) this;
-        int progress = Math.max(self.mProgresstime, 0);
-        int room = self.mMaxProgresstime - progress;
-        if (room <= 0) return 0;
-
-        int slowdownCount = this.requiredCondensate == null ? this.slowdowns
-            : assembler.getSlowdowns(this.requiredCondensate.keySet());
-
-        return NaniteBudget.resolve(
-            raw,
-            room,
-            this.subtickCounter,
-            self.getParallelRecipesInProgress(),
-            slowdownCount,
-            self.getManualSlowdown());
+    @ModifyVariable(method = "incrementProgressTime", at = @At(value = "STORE", ordinal = 0), name = "nextProgress")
+    private int gtrh$incrementProgressTime2(int originValue, @Local(ordinal = 0) int fullTicks) {
+        return Config.moduleEnabled("bec_no_nerf")
+            ? (int) Math.min(Integer.MAX_VALUE, (long) this.mProgresstime + fullTicks)
+            : originValue;
     }
 
     @Inject(method = "getProcessingSpeed", at = @At("RETURN"), cancellable = true)
