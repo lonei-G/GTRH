@@ -58,4 +58,24 @@ public class NaniteBudgetTest {
         // slowdowns 3 -> divisor 4, so a single progress tick needs 4 nanites
         assertEquals(4, NaniteBudget.resolve(1000, 1, 0, 1, 3, 1));
     }
+
+    @Test
+    public void progressThatDidNotWrapIsKept() {
+        assertEquals(150, NaniteBudget.saturateProgress(100, 150));
+        assertEquals(0, NaniteBudget.saturateProgress(0, 0));
+    }
+
+    @Test
+    public void wrappedProgressIsRecoveredAndSaturated() {
+        int current = 2_000_000_000;
+        int fullTicks = 500_000_000;
+        assertEquals(Integer.MAX_VALUE, NaniteBudget.saturateProgress(current, current + fullTicks));
+        assertEquals(Integer.MAX_VALUE, NaniteBudget.saturateProgress(Integer.MAX_VALUE, Integer.MAX_VALUE * 2));
+    }
+
+    @Test
+    public void negativeProgressCountsAsZero() {
+        assertEquals(5, NaniteBudget.saturateProgress(-9, 5));
+    }
+
 }

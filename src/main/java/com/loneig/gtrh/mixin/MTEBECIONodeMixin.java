@@ -4,6 +4,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
@@ -50,7 +51,8 @@ public abstract class MTEBECIONodeMixin {
             target = "Ltectech/thing/metaTileEntity/multi/bec/MTEBECAssembler;getAvailableNanites()I"))
     private int gtrh$nanitesThatFitProgress(MTEBECAssembler assembler) {
         int raw = assembler.getAvailableNanites();
-        if (!Config.moduleEnabled("bec_no_nerf") || raw <= 0) return Math.max(raw, 0);
+        if (!Config.moduleEnabled("bec_no_nerf")) return raw;
+        if (raw <= 0) return 0;
 
         MTEBECIONode self = (MTEBECIONode) (Object) this;
         int progress = Math.max(self.mProgresstime, 0);
@@ -93,6 +95,15 @@ public abstract class MTEBECIONodeMixin {
     private int gtrh$dropAboveTierDivisor(int parallels, int aboveTier) {
         if (Config.moduleEnabled("bec_no_nerf")) return parallels;
         return GTUtility.mulSafe(parallels, aboveTier);
+    }
+
+    // The tier gate and pause checks use this local before progress is stored.
+    @ModifyVariable(method = "incrementProgressTime", at = @At("STORE"), index = 10)
+    private int gtrh$saturateNextProgress(int nextProgress) {
+        if (!Config.moduleEnabled("bec_no_nerf")) return nextProgress;
+
+        MTEBECIONode self = (MTEBECIONode) (Object) this;
+        return NaniteBudget.saturateProgress(self.mProgresstime, nextProgress);
     }
 
     private MTEBECAssembler gtrh$getAssembler() {

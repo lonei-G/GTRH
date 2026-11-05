@@ -33,4 +33,13 @@ public final class NaniteBudget {
         long budget = Math.min(Math.min((long) available, needed), (long) Integer.MAX_VALUE - banked);
         return (int) Math.max(budget, 0L);
     }
+
+    public static int saturateProgress(int current, int stored) {
+        if (stored >= 0) return stored;
+
+        // Both operands were non-negative; recover their sum from the wrapped int.
+        int base = Math.max(current, 0);
+        long sum = base + Integer.toUnsignedLong(stored - base);
+        return (int) Math.min(Integer.MAX_VALUE, sum);
+    }
 }

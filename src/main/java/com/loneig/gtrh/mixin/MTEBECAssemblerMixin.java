@@ -24,34 +24,50 @@ public abstract class MTEBECAssemblerMixin {
     private List<MTEHatchNanite> naniteHatches;
 
     @Shadow
+    private boolean nanitesDirty;
+
+    @Shadow
+    private NaniteTier currentNaniteTier;
+
+    @Shadow
     private int availableNanites;
 
-    @Inject(method = "updateNaniteInfoIfDirty", at = @At("TAIL"))
+    @Inject(method = "updateNaniteInfoIfDirty", at = @At("HEAD"), cancellable = true)
     private void gtrh$uncapNanitesOnUpdate(CallbackInfo ci) {
+        if (!Config.moduleEnabled("bec_no_nerf") || !this.nanitesDirty) return;
+
         gtrh$recountNanites();
+        ci.cancel();
     }
 
+    // Hatch contents can change without marking the assembler cache dirty.
     @Inject(method = "onPostTick", at = @At("TAIL"))
     private void gtrh$uncapNanitesOnTick(IGregTechTileEntity igte, long aTick, CallbackInfo ci) {
+        if (!Config.moduleEnabled("bec_no_nerf")) return;
+
         gtrh$recountNanites();
     }
 
     private void gtrh$recountNanites() {
-        if (!Config.moduleEnabled("bec_no_nerf")) return;
-
         long total = 0;
+        NaniteTier lowestTier = null;
 
         for (MTEHatchNanite hatch : this.naniteHatches) {
+            NaniteTier tier = NaniteTier.fromStack(hatch.getItemStack());
+            if (tier == null) continue;
+
             int count = hatch.getItemCount();
-            if (count > 0 && NaniteTier.fromStack(hatch.getItemStack()) != null) {
-                total += count;
-                if (total > Integer.MAX_VALUE) {
-                    total = Integer.MAX_VALUE;
-                    break;
-                }
+            if (count == 0) continue;
+
+            if (lowestTier == null || tier.ordinal() < lowestTier.ordinal()) {
+                lowestTier = tier;
             }
+
+            total += count;
         }
 
-        this.availableNanites = (int) total;
+        this.nanitesDirty = false;
+        this.currentNaniteTier = lowestTier;
+        this.availableNanites = (int) Math.min(total, Integer.MAX_VALUE);
     }
 }
