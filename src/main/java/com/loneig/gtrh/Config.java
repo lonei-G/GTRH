@@ -9,7 +9,8 @@ import net.minecraftforge.common.config.Configuration;
 public class Config {
 
     public static final String[] MODULES = { "disassembler", "unbreakable_lightning_rod", "infinity_storage_me_hatches",
-        "indium_comb_processing", "qft_waterline", "processing_array", "processing_center", "bec_no_nerf" };
+        "steam_output_bus_auto_output", "indium_comb_processing", "qft_waterline", "processing_array",
+        "processing_center", "bec_no_nerf" };
 
     private static final Map<String, Boolean> MODULE_STATE = new LinkedHashMap<>();
 
@@ -69,6 +70,8 @@ public class Config {
                 return "Prevent lightning rods from being destroyed when struck.";
             case "infinity_storage_me_hatches":
                 return "Give ME output buses and ME output hatches infinite capacity.";
+            case "steam_output_bus_auto_output":
+                return "Restore the automatic output of steam output buses to adjacent inventories.";
             case "indium_comb_processing":
                 return "Add large chemical reactor recipes for indium combs.";
             case "qft_waterline":

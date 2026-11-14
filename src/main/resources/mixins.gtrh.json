@@ -10,6 +10,7 @@
     "GTModHandlerMixin",
     "BWUtilMixin",
     "MTEHatchOutputMEBaseMixin",
+    "MTEHatchSteamBusOutputMixin",
     "MTEBECAssemblerMixin",
     "MTEBECIONodeMixin",
     "RecipeMapFrontendMixin"

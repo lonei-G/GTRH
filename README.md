@@ -14,6 +14,7 @@ GTRH is an unofficial add-on for GTNH. It brings back the heroes lost in older v
 - **Processing Center (Nine in One)** — a work of art from GT++, the highest peak of parallelism.
 - **Lightning Rods Without Automation** — the lightning rod's fence is no longer destroyed when struck.
 - **Infinite ME Output Hatches** — ME output buses and output hatches have unlimited cache by default.
+- **Steam Output Bus Auto-Output** — steam output buses push their contents to adjacent inventories again.
 - **Indium Comb Processing** — adds Large Chemical Reactor recipes for indium combs.
 - **QFT Waterline** — the QFT waterline recipes.
 - **Make BEC Great Again** — makes BEC numbers usable outside the vanilla pack.
