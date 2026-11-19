@@ -12,3 +12,20 @@ jobs:
   release-tags:
     uses: GTNewHorizons/GTNH-Actions-Workflows/.github/workflows/release-tags.yml@master
     secrets: inherit
+
+  direct-commits:
+    needs: release-tags
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const addDirectCommits = require('./.github/scripts/direct-commits.cjs');
+            await addDirectCommits(github, context);
