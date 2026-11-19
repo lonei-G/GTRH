@@ -40,7 +40,6 @@ public abstract class MTEBECAssemblerMixin {
         ci.cancel();
     }
 
-    // Hatch contents can change without marking the assembler cache dirty.
     @Inject(method = "onPostTick", at = @At("TAIL"))
     private void gtrh$uncapNanitesOnTick(IGregTechTileEntity igte, long aTick, CallbackInfo ci) {
         if (!Config.moduleEnabled("bec_no_nerf")) return;

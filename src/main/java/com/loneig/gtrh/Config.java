@@ -10,7 +10,7 @@ public class Config {
 
     public static final String[] MODULES = { "disassembler", "unbreakable_lightning_rod", "infinity_storage_me_hatches",
         "steam_output_bus_auto_output", "indium_comb_processing", "qft_waterline", "processing_array",
-        "processing_center", "bec_no_nerf" };
+        "processing_center", "bec_no_nerf", "eec_staballoy_no_nerf" };
 
     private static final Map<String, Boolean> MODULE_STATE = new LinkedHashMap<>();
 
@@ -82,6 +82,8 @@ public class Config {
                 return "Add the processing center multiblock.";
             case "bec_no_nerf":
                 return "Revert BEC nerfs and remove the nanite cap.";
+            case "eec_staballoy_no_nerf":
+                return "Restore the pre-nerf Staballoy Construct drops in the Extreme Entity Crusher.";
             default:
                 return "Enable the " + id + " module.";
         }

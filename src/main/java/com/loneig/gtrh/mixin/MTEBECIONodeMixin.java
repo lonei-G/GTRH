@@ -97,7 +97,6 @@ public abstract class MTEBECIONodeMixin {
         return GTUtility.mulSafe(parallels, aboveTier);
     }
 
-    // The tier gate and pause checks use this local before progress is stored.
     @ModifyVariable(method = "incrementProgressTime", at = @At("STORE"), index = 10)
     private int gtrh$saturateNextProgress(int nextProgress) {
         if (!Config.moduleEnabled("bec_no_nerf")) return nextProgress;
