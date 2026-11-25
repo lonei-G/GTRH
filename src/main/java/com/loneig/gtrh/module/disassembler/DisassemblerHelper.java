@@ -414,7 +414,7 @@ public final class DisassemblerHelper {
             addBlacklist(list, GTModHandler.getModItem(Mods.Railcraft.ID, "track", 1L, 816));
         }
 
-        addBlacklist(list, GTModHandler.getModItem(Mods.IndustrialCraft2.ID, "mixedMetalIngot", 1L, 0));
+        addBlacklist(list, ItemList.IC2_Mixed_Metal_Ingot.get(1L));
         addBlacklist(list, GTModHandler.getModItem(Mods.Railcraft.ID, "machine.alpha", 1, 14));
 
         // transformers

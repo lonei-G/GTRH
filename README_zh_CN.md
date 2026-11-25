@@ -20,9 +20,10 @@ GTRH 是一个面向 GTNH 的非官方附加模组，旨在将旧版本逝去的
 
 ## 下载与需求
 
-| GTNH       | GTRH | 下载 | 维护状态 |
+| GTNH       | GTRH  | 下载 | 维护状态 |
 |------------|-------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|:--------:|
-| 2.9.1      | 0.2.5 | [![0.2.5](https://img.shields.io/badge/release-v0.2.5-orange)](https://github.com/lonei-G/GTRH/releases/tag/0.2.5) |      ✔️      |
+| 2.9.2      | 0.2.6 | [![Latest](https://img.shields.io/github/v/release/lonei-G/GTRH)](https://github.com/lonei-G/GTRH/releases/latest) |      ✔️      |
+| 2.9.1      | 0.2.5 | [![0.2.5](https://img.shields.io/badge/release-v0.2.5-orange)](https://github.com/lonei-G/GTRH/releases/tag/0.2.5) |      ❌      |
 | 2.9.0      | 0.2.4 | [![0.2.4](https://img.shields.io/badge/release-v0.2.4-orange)](https://github.com/lonei-G/GTRH/releases/tag/0.2.4) |      ❌      |
 | 2.9.0-RC-2 | 0.1.0 | [![0.1.0](https://img.shields.io/badge/release-v0.1.0-orange)](https://github.com/lonei-G/GTRH/releases/tag/0.1.0) |      ❌      |
 
