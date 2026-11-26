@@ -14,6 +14,7 @@ public class Config {
 
     private static final Map<String, Boolean> MODULE_STATE = new LinkedHashMap<>();
 
+    public static boolean debug;
     public static int t1MteId = 451;
     public static int t6MteId = 11160;
     public static int processingArrayMteId = 1199;
@@ -32,6 +33,7 @@ public class Config {
             MODULE_STATE.put(id, configuration.getBoolean(id, "modules", true, moduleDescription(id)));
         }
 
+        debug = configuration.getBoolean("debug", Configuration.CATEGORY_GENERAL, false, "Enable GTRH debug logging.");
         t1MteId = configuration.getInt(
             "t1MteId",
             "disassembler",

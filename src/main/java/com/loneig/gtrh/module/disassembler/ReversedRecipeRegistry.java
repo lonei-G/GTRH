@@ -26,7 +26,9 @@ public final class ReversedRecipeRegistry {
             try {
                 return toReversed().orElse(null);
             } catch (RuntimeException e) {
-                GTRH.LOG.debug("Skipping crafting recipe that cannot be reversed", e);
+                if (Config.debug) {
+                    GTRH.LOG.debug("Skipping crafting recipe that cannot be reversed", e);
+                }
                 return null;
             }
         }
