@@ -21,12 +21,12 @@ GTRH is an unofficial add-on for GTNH. It brings back the heroes lost in older v
 
 ## Downloads & Requirements
 
-| GTNH       | GTRH  | Download                                                                                                           | Maintenance |
-|------------|-------|--------------------------------------------------------------------------------------------------------------------|:-----------:|
-| 2.9.2      | 0.2.6 | [![Latest](https://img.shields.io/github/v/release/lonei-G/GTRH)](https://github.com/lonei-G/GTRH/releases/latest) |      ✔️      |
-| 2.9.1      | 0.2.5 | [![0.2.5](https://img.shields.io/badge/release-v0.2.5-orange)](https://github.com/lonei-G/GTRH/releases/tag/0.2.5) |      ❌      |
-| 2.9.0      | 0.2.4 | [![0.2.4](https://img.shields.io/badge/release-v0.2.4-orange)](https://github.com/lonei-G/GTRH/releases/tag/0.2.4) |      ❌      |
-| 2.9.0-RC-2 | 0.1.0 | [![0.1.0](https://img.shields.io/badge/release-v0.1.0-orange)](https://github.com/lonei-G/GTRH/releases/tag/0.1.0) |      ❌      |
+| GTNH       | GTRH   | Download                                                                                                           | Maintenance |
+|------------|--------|--------------------------------------------------------------------------------------------------------------------|:-----------:|
+| 2.9.2      | 0.2.6+ | [![Latest](https://img.shields.io/github/v/release/lonei-G/GTRH)](https://github.com/lonei-G/GTRH/releases/latest) |      ✔️      |
+| 2.9.1      | 0.2.5  | [![0.2.5](https://img.shields.io/badge/release-v0.2.5-orange)](https://github.com/lonei-G/GTRH/releases/tag/0.2.5) |      ❌      |
+| 2.9.0      | 0.2.4  | [![0.2.4](https://img.shields.io/badge/release-v0.2.4-orange)](https://github.com/lonei-G/GTRH/releases/tag/0.2.4) |      ❌      |
+| 2.9.0-RC-2 | 0.1.0  | [![0.1.0](https://img.shields.io/badge/release-v0.1.0-orange)](https://github.com/lonei-G/GTRH/releases/tag/0.1.0) |      ❌      |
 
 ## Credits
 
