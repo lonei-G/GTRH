@@ -10,7 +10,7 @@ public class Config {
 
     public static final String[] MODULES = { "disassembler", "unbreakable_lightning_rod", "infinity_storage_me_hatches",
         "steam_output_bus_auto_output", "indium_comb_processing", "qft_waterline", "processing_array",
-        "processing_center", "bec_no_nerf", "eec_staballoy_no_nerf" };
+        "processing_center", "bec_no_nerf", "eec_staballoy_no_nerf", "unstable_ingot_shift_craft" };
 
     private static final Map<String, Boolean> MODULE_STATE = new LinkedHashMap<>();
 
@@ -33,31 +33,14 @@ public class Config {
             MODULE_STATE.put(id, configuration.getBoolean(id, "modules", true, moduleDescription(id)));
         }
 
-        debug = configuration.getBoolean("debug", Configuration.CATEGORY_GENERAL, false, "Enable GTRH debug logging.");
-        t1MteId = configuration.getInt(
-            "t1MteId",
-            "disassembler",
-            451,
-            1,
-            31995,
-            "First MTE id of the T1-T5 disassemblers. Five consecutive ids are used.");
-        t6MteId = configuration.getInt(
-            "t6MteId",
-            "disassembler",
-            11160,
-            1,
-            31993,
-            "First MTE id of the T6-T12 disassemblers. Seven consecutive ids are used.");
+        debug = configuration.getBoolean("debug", Configuration.CATEGORY_GENERAL, false, "Enable debug logging.");
+        t1MteId = configuration.getInt("t1MteId", "disassembler", 451, 1, 31995, "First T1-T5 disassembler MTE id.");
+        t6MteId = configuration.getInt("t6MteId", "disassembler", 11160, 1, 31993, "First T6-T12 disassembler MTE id.");
 
         processingArrayMteId = configuration
-            .getInt("processingArrayMteId", "processing_array", 1199, 1, 31995, "MTE id of the processing array.");
-        processingCenterMteId = configuration.getInt(
-            "processingCenterMteId",
-            "processing_center",
-            860,
-            1,
-            31995,
-            "MTE id of the nine in one processing center.");
+            .getInt("processingArrayMteId", "processing_array", 1199, 1, 31995, "Processing Array MTE id.");
+        processingCenterMteId = configuration
+            .getInt("processingCenterMteId", "processing_center", 860, 1, 31995, "Processing Center MTE id.");
 
         if (configuration.hasChanged()) {
             configuration.save();
@@ -67,25 +50,27 @@ public class Config {
     private static String moduleDescription(String id) {
         switch (id) {
             case "disassembler":
-                return "Enable the T1-T12 disassemblers and the recipes reversed from assembler and crafting table recipes.";
+                return "Enable disassemblers.";
             case "unbreakable_lightning_rod":
-                return "Prevent lightning rods from being destroyed when struck.";
+                return "Protect lightning rods from strikes.";
             case "infinity_storage_me_hatches":
-                return "Give ME output buses and ME output hatches infinite capacity.";
+                return "Enable infinite ME output storage.";
             case "steam_output_bus_auto_output":
-                return "Restore the automatic output of steam output buses to adjacent inventories.";
+                return "Enable steam bus auto-output.";
             case "indium_comb_processing":
-                return "Add large chemical reactor recipes for indium combs.";
+                return "Enable indium comb recipes.";
             case "qft_waterline":
-                return "Add the QFT waterline recipes and their catalysts.";
+                return "Enable QFT waterline recipes.";
             case "processing_array":
-                return "Add the processing array multiblock.";
+                return "Enable Processing Array.";
             case "processing_center":
-                return "Add the processing center multiblock.";
+                return "Enable Processing Center.";
             case "bec_no_nerf":
-                return "Revert BEC nerfs and remove the nanite cap.";
+                return "Restore BEC nerfs and remove the nanite cap.";
             case "eec_staballoy_no_nerf":
-                return "Restore the pre-nerf Staballoy Construct drops in the Extreme Entity Crusher.";
+                return "Restore Staballoy Construct drops.";
+            case "unstable_ingot_shift_craft":
+                return "Shift-right-click to craft unstable ingots without an explosion.";
             default:
                 return "Enable the " + id + " module.";
         }

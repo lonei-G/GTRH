@@ -2,22 +2,24 @@
 <p align="center"><strong><em>GTNH Add-on</em></strong></p>
 <p align="center">English | <a href="README_zh_CN.md">简体中文</a></p>
 
-GTRH is an unofficial add-on for GTNH. It brings back the heroes lost in older versions.
+GTRH is an unofficial add-on for GTNH that brings back features lost from older versions.
 
 > [!NOTE]
 > This mod is unofficial. Please do not discuss it on the official GTNH forums.
 
 ## Features
 
-- **Disassembler** — single-block machines that take items back into their components. Reverse recipes are generated from all GregTech assembler and crafting-table recipes.
-- **Processing Array** — an EV multiblock. Put up to 64 single-block GregTech machines in the controller and run them in bulk.
-- **Processing Center (Nine in One)** — a work of art from GT++, the highest peak of parallelism.
-- **Lightning Rods Without Automation** — the lightning rod's fence is no longer destroyed when struck.
-- **Infinite ME Output Hatches** — ME output buses and output hatches have unlimited cache by default.
-- **Steam Output Bus Auto-Output** — steam output buses push their contents to adjacent inventories again.
+- **Disassembler** — single-block machines that break items back down into their components, with reverse recipes generated from all GregTech assembler and crafting-table recipes.
+- **Processing Array** — an EV multiblock that holds up to 64 single-block GregTech machines in its controller and runs them in parallel.
+- **Processing Center (Nine in One)** — a true masterpiece of GT++, standing at the pinnacle of parallelism.
+- **Lightning Rods Without Automation** — a lightning rod's fence is no longer destroyed when struck by lightning.
+- **Infinite ME Output Storage** — ME output buses and hatches feature unlimited buffer capacity by default.
+- **Steam Output Bus Auto-Output** — restores the steam output bus's ability to auto-export items into adjacent inventories.
 - **Indium Comb Processing** — adds Large Chemical Reactor recipes for indium combs.
-- **QFT Waterline** — the QFT waterline recipes.
-- **Make BEC Great Again** — makes BEC numbers usable outside the vanilla pack.
+- **QFT Waterline** — adds QFT waterline recipes.
+- **Make BEC Great Again** — restores BEC values so they hold up outside the vanilla pack.
+- **Unstable Ingot Shift-Crafting** — shift-crafting unstable ingots with a regular Division Sigil no longer triggers an explosion.
+- **Staballoy Construct Drops** — reverts the nerf to Staballoy Construct drops in the EEC.
 
 ## Downloads & Requirements
 

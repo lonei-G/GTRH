@@ -13,7 +13,8 @@
     "MTEHatchSteamBusOutputMixin",
     "MTEBECAssemblerMixin",
     "MTEBECIONodeMixin",
-    "RecipeMapFrontendMixin"
+    "RecipeMapFrontendMixin",
+    "ContainerWorkbenchMixin"
   ],
   "client": [],
   "server": []
